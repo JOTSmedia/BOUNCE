@@ -1,0 +1,19 @@
+{
+  "name": "bounce-pitch",
+  "version": "1.0.0",
+  "description": "BOUNCE interactive development pitch",
+  "main": "index.js",
+  "scripts": {
+    "build:content": "node build-package.mjs",
+    "start": "python3 -m http.server 4173 --directory dist",
+    "check": "node --check dist/app.js && node --check dist/ball3d.js && node --check dist/neon.js && node --check dist/arena-wireframe.js && node --check dist/reading-flow.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "marked": "^15.0.12",
+    "three": "^0.180.0"
+  }
+}

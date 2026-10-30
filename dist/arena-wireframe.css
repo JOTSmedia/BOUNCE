@@ -1,0 +1,57 @@
+/* One progress value controls the flight and its blueprint arrival. */
+.loader.has-flight-map{--flight-logo-size:clamp(76px,11.5vw,138px);transition:background .6s,opacity .4s}
+.loader.has-flight-map .loader-inner{width:min(86vw,900px);padding-top:calc(var(--flight-logo-size) * .8)}
+.loader.has-flight-map .loading-wordmark{font-size:var(--flight-logo-size)}
+.loader.has-flight-map .loader-inner>p{font-size:16px;margin:18px 0 3px}
+.loader.has-flight-map .loading-track{max-width:740px;margin:auto}
+.loader.has-flight-map .loader-bottom{max-width:740px;margin:16px auto 0}
+.loader.has-flight-map .loader-backdrop{animation:none;transform:none;opacity:0!important}
+.loader.has-flight-map::after{opacity:0}
+.loader.has-flight-map.arena-arrived{background:#0b203d}
+.flight-map-wrap{position:relative;height:clamp(220px,39vh,330px);width:min(100%,740px);margin:0 auto 12px}
+.flight-map{display:block;width:100%;height:100%;overflow:visible;transition:opacity .3s ease-out}
+.flight-land{fill:#171a18}
+.flight-mesh{fill:none;stroke:#e08951;stroke-width:.65;opacity:.5}
+.flight-coast{fill:none;stroke:#d5c9b7;stroke-width:2.2;opacity:.85}
+.flight-route-guide{fill:none;stroke:#f1c396;stroke-width:1.5;stroke-dasharray:5 10;opacity:.32}
+.flight-route{fill:none;stroke:#f59958;stroke-width:4;stroke-linecap:round}
+.flight-city{fill:#f1c38c;stroke:#141613;stroke-width:3}
+.flight-label{fill:#efe8d9;font-family:DM,Arial,sans-serif;font-size:25px;letter-spacing:2px;font-weight:600}
+.flight-label-leader{fill:none;stroke:#d8c3a8;stroke-width:1.5}
+.flight-plane{fill:#f8dd9c;stroke:#111410;stroke-width:1.5;paint-order:stroke;filter:drop-shadow(0 0 5px rgba(246,176,104,.35))}
+.arena-arrived .flight-map{opacity:0}
+.arena-wireframe{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;opacity:0;transition:opacity .5s ease-out}
+.arena-arrived .arena-wireframe{opacity:1}
+.blueprint-detail,.blueprint-structure,.blueprint-faint,.blueprint-guide,.blueprint-solid,.blueprint-board{fill:none;stroke:#c8d7e5;stroke-width:.5px;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.blueprint-structure{stroke:#e0e9ee;stroke-width:.8px}
+.blueprint-faint{opacity:.43;stroke-width:.4px}
+.blueprint-guide{opacity:.35;stroke-dasharray:4 5}
+.blueprint-solid,.blueprint-board{fill:#0b203d;stroke:#e0e9ee;stroke-width:.75px}
+.blueprint-title,.blueprint-caption,.blueprint-note{fill:#dbe5ec;font-family:DM,Arial,sans-serif;font-weight:400;letter-spacing:2px}
+.blueprint-title{font-size:22px;letter-spacing:3px}
+.blueprint-caption{font-size:12px}
+.blueprint-note{font-size:10px;opacity:.65}
+.loader.has-flight-map .loader-credit{display:none}
+@media(max-width:640px){
+  .loader.has-flight-map{--flight-logo-size:21vw}
+  .loader.has-flight-map .loader-inner{width:88vw}
+  .loader.has-flight-map .loader-inner>p{font-size:13px;margin-top:20px}
+  .flight-map-wrap{height:280px;margin:4px auto 20px}
+  .flight-label{font-size:33px;letter-spacing:1px}
+  .flight-route{stroke-width:5}
+  .flight-coast{stroke-width:3}
+  .flight-mesh{stroke-width:1}
+  .blueprint-caption{font-size:17px}
+  .blueprint-title{font-size:25px}
+}
+@media(max-height:600px) and (min-width:641px){
+  .loader.has-flight-map{--flight-logo-size:clamp(70px,9vw,105px)}
+  .flight-map-wrap{height:32vh;min-height:145px;margin-bottom:8px}
+  .loader.has-flight-map .loader-inner>p{margin-top:12px}
+  .loader.has-flight-map .loader-bottom{margin-top:12px}
+}
+.share-preview .loader.has-flight-map .loader-inner{padding-top:0;width:min(84vw,840px)}
+.share-preview .loader.has-flight-map .loading-wordmark{font-size:clamp(80px,12vw,145px)}
+.share-preview .loader.has-flight-map .loader-inner>p{font-size:18px;margin:22px 0 5px}
+.share-preview .flight-map-wrap{height:300px;display:block}
+@media(prefers-reduced-motion:reduce){.flight-map{visibility:hidden}.arena-wireframe{transition:none}}

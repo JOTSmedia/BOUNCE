@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import {marked} from 'marked';
+marked.setOptions({breaks:true});
+const files=['story-package.md','opening-scripts.md','visual-brief.md'];
+const md=files.map(f=>fs.readFileSync('content/'+f,'utf8')).join('\n\n');
+fs.writeFileSync('dist/BOUNCE-development-package.md',md);
+const parts=md.split(/(?=^#{1,2} [1-9]\. )/m).slice(1);
+const sections=parts.map(p=>{let first=p.split('\n')[0];return{id:Number(first.match(/ (\d)\./)[1]),title:first.replace(/^#+ \d\. /,''),html:marked.parse(p.replace(/^# (\d\.)/gm,'## $1'))}});
+const table=md.slice(md.indexOf('| # | Working title')).split('\n').filter(l=>/^\| \d+ \|/.test(l));
+const clean=s=>s.replace(/\*\*/g,'').trim();
+const songs=table.map(row=>{const cells=row.split('|').slice(1,-1).map(clean),[title,singers]=cells[1].split(' — ');return{title,singers,purpose:cells[2],music:'Reprise: '+cells[3]}});
+fs.writeFileSync('dist/package-data.json',JSON.stringify({sections,songs},null,2));
+const print=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BOUNCE — Development Package</title><style>@font-face{font-family:DM;src:url('assets/dm-sans.ttf')}*{box-sizing:border-box}body{font-family:DM,Arial,sans-serif;background:#eeede5;color:#20201c;max-width:960px;margin:0 auto;padding:50px 28px;line-height:1.6;font-size:17px}h1,h2,h3,h4,h5,h6{text-transform:uppercase}h1{font-size:64px;line-height:1.1}h2{font-size:32px;line-height:1.2;margin-top:65px}h3{font-size:24px;line-height:1.3;margin-top:35px}h4{font-size:19px}p{margin:0 0 18px;text-align:justify;text-justify:inter-word;hyphens:auto}table{border-collapse:collapse;display:block;overflow:auto;font-size:13px}td,th{padding:10px;border:1px solid #bab9b0;text-align:left;vertical-align:top}blockquote{background:#deddd3;padding:18px 24px;margin:20px 0}nav{display:flex;gap:24px;flex-wrap:wrap}a{color:inherit;text-transform:uppercase}li{margin-bottom:10px}@media print{body{background:white;font-size:10pt;padding:0;max-width:none}nav{display:none}h2{break-before:page;margin-top:0;font-size:23pt}h3,h4{break-after:avoid}table{display:table;font-size:8pt}tr{break-inside:avoid}blockquote{background:none}a{text-decoration:none}@page{size:letter;margin:.75in}}</style></head><body><nav><a href="index.html">← Interactive pitch</a><a href="BOUNCE-development-package.md" download>Download text</a><span>Use your browser’s Print command to save a PDF.</span></nav>${marked.parse(md.replace(/^# ([7-9]\.)/gm,'## $1'))}</body></html>`;
+fs.writeFileSync('dist/package.html',print);
+if(sections.length!==9||songs.length!==16)throw Error(`Unexpected count ${sections.length} sections / ${songs.length} songs`);
+console.log(`Prepared ${sections.length} sections and ${songs.length} songs; ${md.split(/\s+/).length} words.`);
