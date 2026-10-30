@@ -1,0 +1,29 @@
+{
+  "asset": "msg-video-4k.jpg",
+  "title": "Aerial establishing shot of Madison Square Garden Night",
+  "creator": "Andrew Dutton",
+  "source_url": "https://www.youtube.com/watch?v=_ScS7TNiptA",
+  "input": "User-supplied local video file",
+  "source_filename": "YTDown.com_YouTube_Media__ScS7TNiptA_Aerial-establishing-shot-of-Madison-Square-Garden-Night_001_2160p.mp4",
+  "width": 3840,
+  "height": 2160,
+  "frame_timestamp_seconds": 9,
+  "source_codec": "h264",
+  "source_frame_rate": "30000/1001",
+  "processing": "Direct FFmpeg frame extraction to high-quality JPEG. No AI generation, upscaling, retouching, or cropping.",
+  "rights_note": "User supplied this video and requested its use in the website. Creator attribution retained; no additional license grant is asserted.",
+  "wireframe_motion": {
+    "asset": "msg-wireframe-motion.mp4",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "source_start_seconds": 0,
+    "source_end_seconds": 9,
+    "processing": "Direct camera motion retained; grayscale, spatial blur and architectural edge detection produce neutral outlines on black. No AI or new camera motion.",
+    "duration_seconds": 9.033333,
+    "frame_count": 271,
+    "last_frame_timestamp_seconds": 9,
+    "file_size_bytes": 4310002,
+    "encoding": "H.264 yuv420p, silent, fast-start MP4"
+  }
+}

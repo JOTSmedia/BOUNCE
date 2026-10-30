@@ -1,0 +1,2 @@
+/* Automatic reading must not inherit smooth scrolling from anchor navigation. */
+html.reading-flow-active{scroll-behavior:auto!important}

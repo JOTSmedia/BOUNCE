@@ -1,0 +1,347 @@
+/* Cool architectural surfaces frame eight vivid character identities.
+   Orange is reserved for the basketball and Lena's deliberate character color.
+   This layer changes material/color only; component files own all geometry. */
+:root {
+  --bg:#0c111b;
+  --ink:#eef2fa;
+  --orange:#ef7a36;
+  --surface-raised:#202a39;
+  --surface-inset:#151f30;
+  --surface-rule:#536075;
+  --text-muted:#b9c5d8;
+  --paper-shared:#e5ebf3;
+  --paper-ink-shared:#172133;
+  --paper-muted-shared:#4c5b70;
+  --spectrum:linear-gradient(90deg,#ff3b30 0%,#ff9500 16.67%,#ffe600 33.33%,#00d878 50%,#2496ff 66.67%,#6255ff 83.33%,#ba5bff 100%);
+}
+#site-content { background:var(--bg); color:var(--ink); }
+#site-content header { background:var(--bg); }
+#site-content button:hover,#site-content a:hover,#reader button:hover,#loader button:hover { color:#fff; }
+#site-content .nav-action { background:var(--surface-raised); color:var(--ink); }
+#site-content .nav-action:hover { background:#344259; color:#fff; }
+#site-content nav a:hover { color:#fff; }
+#site-content .hero-caption { color:var(--text-muted); }
+#site-content .hero-caption button { color:var(--ink); }
+#site-content .button { background:var(--paper-shared); color:#101a2b; }
+#site-content .button:hover { background:#fff; color:#101a2b; }
+#site-content ::selection,#reader ::selection { background:#cadaf3; color:#101a2b; }
+.skip-link { background:#e5ebf3; color:#101a2b; }
+.hero-person span { background:#0b1220eb; }
+
+/* The same pebbled leather as the ball, rendered as white leather in the letters.
+   The grayscale filter removes source leather hue; the screen layer raises it to pearl.
+   Only letter spans are clipped, so neither the ball nor its shading is affected. */
+.wordmark .neon-text,.brand .neon-text {
+  color:#f4f7fb;
+  background-color:#fff;
+  background-image:linear-gradient(118deg,#ffffffc7,#ffffff80 45%,#ffffffab),url("assets/basketball-leather.png");
+  background-size:auto,.92em .92em;
+  background-position:center;
+  background-blend-mode:screen,luminosity;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  -webkit-text-stroke:.0035em #e6edf7;
+  text-shadow:none;
+  filter:grayscale(1) brightness(1.12) contrast(1.04) drop-shadow(.012em .022em .016em #0009);
+}
+.neon-outline .neon-base {
+  stroke:#b8cbe5;
+  opacity:.7;
+  filter:drop-shadow(0 0 7px #e1ecff) drop-shadow(0 0 18px #93afd2);
+}
+.neon-outline .neon-runner {
+  stroke:#fff;
+  filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 17px #c4ddff);
+}
+/* The spherical O keeps its basketball-orange rim and leather. */
+
+/* Midnight story pages make the concise pitch and its expanded scenes readable. */
+#story.story {
+  color:var(--ink);
+  background-color:#111d30;
+  background-image:linear-gradient(128deg,#1b2d481f,transparent 55%);
+}
+#story .small-note,#story .story-turn>span { color:var(--text-muted); }
+#story .song-list details { background:#ffffff06; border-top:1px solid #bacbe02e; }
+#story .song-list summary:hover { background:#ffffff09; }
+#story .song-singers { color:var(--text-muted); }
+#story .story-pitch-scenes { color:#e3ebf8; }
+#story .story-pitch-scenes h3 { color:#fff; }
+#story .text-button:hover { color:#fff; }
+
+/* Translucent color covers; text rests on a deeper, readable sheet of glass. */
+#people.people.chapter {
+  --people-ink:var(--ink);
+  --people-muted:var(--text-muted);
+  --folder-stock:#142237a8;
+  --folder-edge:color-mix(in srgb,var(--active-character,#ffe600) 82%,#fff);
+  --paper:#0a1428b8;
+  --paper-ink:#f4f7fd;
+  background:var(--bg);
+}
+#people .cast-layout::before { background:#1b2a41b8; border-color:#c4d7f230; }
+#people .cast-layout::after { background:#131f31b8; border-color:#c4d7f226; }
+#people #character.character,#people #character.character[data-character="zay"] {
+  isolation:isolate;
+  background:#15233aa3;
+  border-color:var(--folder-edge);
+  box-shadow:inset 0 1px 0 #fff6,0 15px 36px #0005;
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  backdrop-filter:blur(22px) saturate(160%);
+}
+#people #character::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:var(--character-gradient,var(--active-gradient,linear-gradient(var(--active-character,#ffe600),var(--active-character,#ffe600))));
+  opacity:.48;
+  pointer-events:none;
+}
+#people #character::after { border-top-color:#ffffff36; border-bottom-color:#ffffff24; }
+#people .folder-contents::before { background:#ffffff30; box-shadow:1px 0 #0002; }
+#people .character-copy {
+  color:#f4f7fd;
+  background:#081226bd;
+  background-image:none;
+  border-top-color:#ffffff75;
+  box-shadow:0 4px 20px #0002,inset 0 0 0 1px #ffffff20;
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+}
+#people .character h3 { color:#fff; }
+#people .character p { color:#e9effa; }
+#people .character .role,#people .character .brief-label,#people .character .character-footer { color:#cbd8eb; }
+#people .character blockquote { color:#f4f7fd; border-bottom-color:#ffffff38; }
+#people .character-footer { border-top-color:#ffffff38; }
+#people .character-footer strong { color:#fff; }
+#people .character-footer strong::before { background:var(--character-gradient,var(--character-color)); }
+#people .character-portrait { background:#f1f6ff21; box-shadow:0 5px 18px #0005,inset 0 0 0 1px #ffffff75; }
+#people .character-portrait figcaption { color:#f4f7fd; text-shadow:0 1px 3px #0006; }
+#people .character-portrait::after { border-color:#e3ebf7; }
+#people .dossier-meta { color:#fff; border-bottom-color:#ffffff59; text-shadow:0 1px 3px #0005; }
+#people .character-copy:focus-visible,#people .folder-contents:focus-visible { outline-color:#fff; }
+#people .people-footer .text-button:hover { color:#fff; }
+
+/* Spectrum glass tabs: a saturated translucent pane, reflected light and a
+   crisp colored rim. Their bright red remains recognizably red over charcoal. */
+#people #cast-list button,#people #cast-list button.is-pinned,#people #cast-list button.is-previewing {
+  background:#adc8f020;
+  color:#07111d;
+  -webkit-backdrop-filter:blur(18px) saturate(170%);
+  backdrop-filter:blur(18px) saturate(170%);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--color) 65%,#fff),inset 0 2px 0 #ffffffa6,inset 0 -1px 0 #ffffff36;
+  text-shadow:0 1px 0 #ffffff1a;
+}
+#people #cast-list button::before,#people #cast-list button.is-pinned::before,#people #cast-list button.is-previewing::before {
+  z-index:1;
+  background:transparent;
+  color:inherit;
+  pointer-events:none;
+}
+#people #cast-list button::after,#people #cast-list button.is-pinned::after,#people #cast-list button.is-previewing::after {
+  z-index:0;
+  inset:1px 1px 0;
+  height:auto;
+  background:linear-gradient(145deg,#ffffff60,#ffffff2e 45%,#ffffff26),var(--color-gradient,linear-gradient(var(--color),var(--color)));
+  clip-path:var(--folder-cut);
+  opacity:.84;
+  pointer-events:none;
+}
+#people #cast-list button>span { position:relative; z-index:2; }
+#people #cast-list button .swatch { display:none; }
+#people #cast-list button[data-person="iris"] { color:#fff; text-shadow:0 1px 2px #1118; }
+#people #cast-list button[data-person="iris"]::after { background:linear-gradient(145deg,#ffffff26,transparent 30%),var(--color-gradient,linear-gradient(var(--color),var(--color))); }
+#people #cast-list button.is-pinned { box-shadow:inset 0 0 0 1px #ffffffb3,inset 0 3px 0 #fff,inset 0 -1px 0 #ffffff59; }
+#people #cast-list button.is-previewing { box-shadow:inset 0 0 0 1px #fff,inset 0 3px 0 #fff,inset 0 -1px 0 #ffffff70; }
+#people #cast-list button:focus-visible { box-shadow:inset 0 0 0 3px #fff; }
+@media(hover:hover) {
+  #people #cast-list button:hover { background:#bed7ff2b; color:#07111d; }
+  #people #cast-list button[data-person="iris"]:hover { color:#fff; }
+  #people #cast-list button:hover::before,#people #cast-list button.is-pinned:hover::before,#people #cast-list button.is-previewing:hover::before { background:transparent; color:inherit; }
+}
+
+/* A charcoal fabric evidence board keeps the tactile case-file language. */
+#connections.board-connections { background:var(--bg); color:var(--ink); }
+.board-connections .chapter-heading>p,.board-instruction { color:var(--text-muted); }
+#connections .network-layout { background:#1a2433; border-color:#657186; box-shadow:0 12px 32px #0005,inset 0 1px 0 #c6d7ee30; }
+#connections .network.relationship-board {
+  background-color:#252f3f;
+  background-image:repeating-linear-gradient(0deg,#0b14272e 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,#b7c9e20a 0 1px,transparent 1px 3px),radial-gradient(#b7c9e21a .6px,transparent 1px);
+  background-size:3px 3px,3px 3px,7px 7px;
+  border-color:#657186;
+  box-shadow:inset 0 2px 10px #0005;
+}
+.relationship-board::before,.relationship-board::after { background:#c4cddd; }
+.board-yarn-shadow { stroke:#030711; }
+.board-yarn-fiber,.board-yarn-light { stroke:#f5f8ff; }
+.board-connections .connection-copy {
+  isolation:isolate;
+  background:#11213bb3;
+  color:#f4f7fd;
+  border:1px solid color-mix(in srgb,var(--selected-pin,#ffe600) 78%,#fff);
+  box-shadow:inset 0 1px 0 #ffffff40;
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  backdrop-filter:blur(22px) saturate(160%);
+}
+.board-connections .connection-copy::before {
+  inset:0;
+  width:auto;
+  height:auto;
+  z-index:-1;
+  background:var(--selected-gradient,linear-gradient(var(--selected-pin,#ffe600),var(--selected-pin,#ffe600)));
+  opacity:.28;
+  transform:none;
+  box-shadow:none;
+}
+.board-connections .connection-copy h3,.board-note h4 { color:#fff; }
+.board-connections .connection-copy>p,.board-note h4 span { color:#dce6f7; }
+.board-note p { color:#f0f4fc; }
+.board-note { border-color:#ffffff38; }
+.board-note h4 span::before { background:var(--connection-gradient,linear-gradient(var(--connection-color),var(--connection-color))); }
+.board-connections .connection-copy>.text-button { color:#fff; }
+.board-person,.board-person-name { color:#162132; }
+.board-person { background:#e1e8f1; }
+.board-file { color:#526178; }
+.board-person[aria-pressed=true],.board-person.is-previewing,.board-person:focus-visible { background:#f4f7fc; color:#162132; }
+@media(hover:hover) and (pointer:fine) { .board-person:hover { background:#f4f7fc; color:#162132; } }
+#loading-progress { background:var(--spectrum); }
+#loading-count { color:#f4f7fd; }
+.loading-track { background:#60738c66; }
+
+/* Alternate midnight and charcoal fields; pearl controls stay consistent. */
+#worlds { background:#142036; }
+#worlds .format-tabs button,#script .scene-selector button { background:#2b3c56; color:var(--ink); }
+#worlds .format-tabs button[aria-selected=true],#script .scene-selector button[aria-selected=true] { background:var(--paper-shared); color:var(--paper-ink-shared); }
+#worlds .format-tabs button:hover,#script .scene-selector button:hover { color:#fff; }
+#worlds .format-tabs button[aria-selected=true]:hover,#script .scene-selector button[aria-selected=true]:hover { color:#172133; }
+#worlds .act { background:#1c2b42; }
+#worlds .act .time { color:var(--text-muted); }
+#worlds .act .turning-point { background:#2a3c57; color:var(--ink); }
+#worlds .worlds-bottom p { color:var(--text-muted); }
+#score { background:#0d1627; color:var(--ink); }
+#score .pulse-demo button { background:#e5ebf3; color:#172133; }
+#score .pulse-demo button:hover { background:#fff; color:#172133; }
+#score .pulse-demo>span,#score .song-singers { color:var(--text-muted); }
+#score .song-list details { background:#ffffff06; border-top:1px solid #b9cce02e; }
+#score .song-list summary:hover { background:#ffffff0b; }
+#score .song-info { color:#dce6f7; }
+#score .text-button:hover { color:#fff; }
+#score .beat-dots i { background:#4b5b73; }
+#score .beat-dots i.on { background:#e5f0ff; box-shadow:0 0 8px #bdcfe580; }
+#script { background:var(--bg); }
+#script .scene-window { background:var(--paper-shared); color:var(--paper-ink-shared); }
+#script .scene-window .button { background:#1f304a; color:#fff; }
+#script .scene-window .button:hover { background:#304767; color:#fff; }
+#script .scene-tag { color:var(--paper-muted-shared); }
+#script .script-note { color:var(--text-muted); }
+#visual { background:#142036; }
+#visual .small-note { color:var(--text-muted); }
+#site-content>footer { background:#0b111c; color:var(--ink); }
+#site-content>footer .photo-credit { color:var(--text-muted); }
+#reader { background:#e8edf5; color:var(--paper-ink-shared); }
+#reader .reader-bar { background:#142036; color:var(--ink); }
+#reader-body blockquote { background:#d9e2ef; }
+#reader-body th,#reader-body td { border-color:#a4b4cb; }
+#reader-body a { color:#274e83; }
+#reader-body a:hover { color:#0b2a57; }
+#character-dialog { background:#0c1728e6; color:var(--ink); }
+#character-dialog .profile-bar { background:#101e33f0; }
+
+/* Zay's combined color identity follows him into the hero and profile window. */
+.hero-person[data-person="zay"]::before {
+  background:var(--spotlight-gradient,linear-gradient(90deg,#ff3b30,#ff9500,#ffe600,#00d878,#2496ff,#6255ff,#ba5bff));
+  -webkit-mask-image:radial-gradient(ellipse at 50% 55%,#000a 0%,#0006 37%,transparent 73%);
+  mask-image:radial-gradient(ellipse at 50% 55%,#000a 0%,#0006 37%,transparent 73%);
+}
+#character-dialog[data-character="zay"] .profile-bar {
+  border-bottom:2px solid transparent;
+  border-image:var(--character-gradient) 1;
+}
+#character-dialog[data-character="zay"] .profile-bar>span { color:var(--ink); }
+
+/* A quiet light is present before interaction, correcting the original artwork's
+   baked color zones without covering faces; hover brings that same light forward. */
+.hero-person::before { opacity:.22; }
+.hero-person[data-person="zay"]::before { opacity:.32; }
+.hero-person[data-person="morgan"]::before { opacity:.34; }
+.hero-person:hover::before, .hero-person:focus-visible::before { opacity:1; }
+.hero-person[data-person="zay"] span {
+  color:#f7f9ff;
+  border-bottom:2px solid transparent;
+  border-image:var(--spotlight-gradient) 1;
+}
+.hero-person[data-person="zay"]:focus-visible {
+  outline-color:#eef2fa;
+  border:2px solid transparent;
+  border-image:var(--spotlight-gradient) 1;
+}
+/* Every profile carries the same current color on its portrait light and edge. */
+#character-dialog .profile-bar {
+  border-bottom:2px solid transparent;
+  border-image:var(--character-gradient) 1;
+}
+#character-dialog .profile-content .character-portrait::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:var(--character-gradient,linear-gradient(var(--character-color),var(--character-color)));
+  -webkit-mask-image:radial-gradient(ellipse at 50% 35%,transparent 27%,#0009 78%,#000);
+  mask-image:radial-gradient(ellipse at 50% 35%,transparent 27%,#0009 78%,#000);
+  opacity:.25;
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
+#character-dialog[data-character="zay"] {
+  border:1px solid transparent;
+  border-image:var(--character-gradient) 1;
+}
+#character-dialog[data-character="zay"] .profile-content .role,
+#character-dialog[data-character="zay"] .character-footer strong { color:#eef2fa; }
+#character-dialog[data-character="zay"] .character-footer strong::before {
+  content:"";
+  display:inline-block;
+  width:15px;
+  height:7px;
+  margin-right:7px;
+  background:var(--character-gradient);
+}
+/* Zay's evidence-board illumination must show the full spectrum, not his fallback ink. */
+.board-person[data-person="zay"]::before {
+  content:"";
+  position:absolute;
+  inset:-8px;
+  z-index:-1;
+  background:var(--pin-gradient);
+  filter:blur(10px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s;
+}
+.board-person[data-person="zay"].is-pinned::before,
+.board-person[data-person="zay"].is-previewing::before,
+.board-person[data-person="zay"]:focus-visible::before { opacity:.55; }
+.board-person[data-person="zay"].is-pinned,
+.board-person[data-person="zay"].is-previewing,
+.board-person[data-person="zay"]:focus-visible {
+  box-shadow:0 0 0 1px #fff9,2px 5px 9px #02050b80;
+  outline-color:#eef2fa;
+}
+@media(hover:hover) and (pointer:fine) {
+  .board-person[data-person="zay"]:hover::before { opacity:.55; }
+  .board-person[data-person="zay"]:hover { box-shadow:0 0 0 1px #fff9,2px 5px 9px #02050b80; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .board-person[data-person="zay"]::before { transition:none; }
+}
+#people[data-active-character="zay"] #character {
+  border-image:var(--active-gradient) 1;
+}
+#connections[data-selected-person="zay"] .connection-copy {
+  border-image:var(--selected-gradient) 1;
+}
+.board-person[data-person="zay"].is-connected .board-person-name {
+  text-decoration-color:#e6ebf4;
+}

@@ -1,0 +1,79 @@
+/* MSG linework draws with 0–100% behind the flight; the photograph waits for 100%. */
+.loader.has-flight-map{--flight-logo-size:clamp(76px,11.5vw,138px);transition:background .4s,opacity .4s}
+.loader.has-flight-map .loader-inner{position:relative;z-index:2;width:min(86vw,900px);padding-top:calc(var(--flight-logo-size) * .8)}
+.loader.has-flight-map .loading-wordmark{font-size:var(--flight-logo-size)}
+.loader.has-flight-map .loader-inner>p{font-size:16px;margin:18px 0 3px}
+.loader.has-flight-map .loading-track{max-width:740px;margin:auto}
+.loader.has-flight-map .loader-bottom{max-width:740px;margin:16px auto 0}
+.loader.has-flight-map .loader-backdrop{animation:none;transform:none;opacity:0!important}
+.loader.has-flight-map::after{opacity:0}
+.loader.has-flight-map.arena-arrived{background:#070e18}
+.flight-map-wrap{position:relative;height:clamp(220px,39vh,330px);width:min(100%,740px);margin:0 auto 12px}
+.flight-map{display:block;width:100%;height:100%;overflow:visible;transition:opacity .2s ease-out}
+.flight-land{fill:#171a18}
+.flight-state-boundaries{fill:none;stroke:#bdcde1;stroke-width:1.15;opacity:.6;stroke-linejoin:round;stroke-linecap:round}
+.flight-coast{fill:none;stroke:#d5c9b7;stroke-width:2.2;opacity:.85}
+.flight-route-guide{fill:none;stroke:#f1c396;stroke-width:1.5;stroke-dasharray:5 10;opacity:.32}
+.flight-route{fill:none;stroke:url(#flight-trail-spectrum);stroke-width:4;stroke-linecap:round}
+.flight-city{fill:#f1c38c;stroke:#141613;stroke-width:3}
+.flight-label{fill:#efe8d9;font-family:DM,Arial,sans-serif;font-size:25px;letter-spacing:2px;font-weight:600}
+.flight-label-leader{fill:none;stroke:#d8c3a8;stroke-width:1.5}
+.flight-plane{fill:#f8dd9c;stroke:#111410;stroke-width:1.5;paint-order:stroke;filter:drop-shadow(0 0 5px rgba(246,176,104,.35))}
+.arena-arrived .flight-map{opacity:0}
+
+/* The genuine camera-motion clip and its final 4K frame share one 16:9 cover crop. */
+.arena-aerial-scene{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;opacity:1;background:radial-gradient(ellipse at 47% 56%,#18324a,#08111e 70%)}
+.arena-aerial-photo{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;filter:saturate(.94)}
+.arena-aerial-scene::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(#03081099,#0308104d 37%,#03081029 65%,#030810b3);pointer-events:none}
+.arena-aerial-wireframe{position:absolute;inset:0;z-index:2;width:100%;height:100%;overflow:hidden;pointer-events:none;opacity:.58;filter:drop-shadow(0 1px 2px #0009)}
+.arena-aerial-wireframe[data-wireframe-progress="0"]{visibility:hidden}
+.arena-aerial-wireframe path{fill:none;stroke:#c5dcf0;stroke-width:.6;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:butt;stroke-dasharray:1 1;stroke-dashoffset:var(--aerial-line-offset,1)}
+.arena-aerial-wireframe .aerial-structure{stroke:#e4edf4;stroke-width:.85}
+.arena-aerial-wireframe .aerial-detail{opacity:.66;stroke-width:.5}
+.arena-aerial-wireframe .aerial-arena{stroke:#f7fbff;stroke-width:1.25}
+.arena-aerial-wireframe .aerial-accent{stroke:#9bbdff;stroke-width:1}
+.arena-aerial-wireframe .aerial-street{stroke:#c9d3d9;stroke-width:.6;opacity:.45}
+.arena-wireframe-motion{position:absolute;inset:0;z-index:2;display:block;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;opacity:0;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(115deg,#000 var(--wire-reveal-solid,-20%),transparent var(--wire-reveal-edge,0%));mask-image:linear-gradient(115deg,#000 var(--wire-reveal-solid,-20%),transparent var(--wire-reveal-edge,0%))}
+.has-motion-video .arena-wireframe-motion{opacity:.8}
+.has-motion-video .arena-aerial-wireframe{display:none}
+.arena-aerial-scene[data-wireframe-progress="0"] .arena-wireframe-motion{visibility:hidden}
+.arena-arrived .can-reveal-photo .arena-aerial-photo{animation:aerial-photo-reveal 1s ease-out both}
+.arena-arrived .can-reveal-photo .arena-aerial-wireframe{animation:aerial-outlines-dissolve .8s ease-in .15s both}
+.arena-arrived .has-motion-video.can-reveal-photo .arena-wireframe-motion{animation:aerial-motion-dissolve .9s ease-in .05s both}
+@keyframes aerial-photo-reveal{from{opacity:0}to{opacity:1}}
+@keyframes aerial-outlines-dissolve{from{opacity:.58}to{opacity:0}}
+@keyframes aerial-motion-dissolve{from{opacity:.8}to{opacity:0}}
+.loader.has-flight-map .loader-credit{display:none}
+@media(max-width:640px){
+  .loader.has-flight-map{--flight-logo-size:21vw}
+  .loader.has-flight-map .loader-inner{width:88vw}
+  .loader.has-flight-map .loader-inner>p{font-size:13px;margin-top:20px}
+  .flight-map-wrap{height:280px;margin:4px auto 20px}
+  .flight-label{font-size:33px;letter-spacing:1px}
+  .flight-route{stroke-width:5}
+  .flight-coast{stroke-width:3}
+  .flight-state-boundaries{stroke-width:1.6}
+}
+@media(max-height:600px) and (min-width:641px){
+  .loader.has-flight-map{--flight-logo-size:clamp(70px,9vw,105px)}
+  .flight-map-wrap{height:32vh;min-height:145px;margin-bottom:8px}
+  .loader.has-flight-map .loader-inner>p{margin-top:12px}
+  .loader.has-flight-map .loader-bottom{margin-top:12px}
+}
+.share-preview .loader.has-flight-map .loader-inner{padding-top:0;width:min(84vw,840px)}
+.share-preview .loader.has-flight-map .loading-wordmark{font-size:clamp(80px,12vw,145px)}
+.share-preview .loader.has-flight-map .loader-inner>p{font-size:18px;margin:22px 0 5px}
+.share-preview .flight-map-wrap{height:300px;display:block}
+body.motion-paused .arena-arrived .arena-aerial-scene,.share-preview .arena-arrived .arena-aerial-scene{animation:none;opacity:1}
+body.motion-paused .arena-arrived .arena-aerial-photo,.share-preview .arena-arrived .arena-aerial-photo{animation:none;opacity:1}
+body.motion-paused .arena-aerial-wireframe,.share-preview .arena-aerial-wireframe{animation:none;opacity:0}
+body.motion-paused .arena-aerial-wireframe path,.share-preview .arena-aerial-wireframe path{animation:none;stroke-dashoffset:0}
+body.motion-paused .arena-wireframe-motion,.share-preview .arena-wireframe-motion{animation:none!important;opacity:0!important}
+@media(prefers-reduced-motion:reduce){
+  .flight-map{visibility:hidden}
+  .arena-arrived .arena-aerial-scene{animation:none;opacity:1}
+  .arena-arrived .has-aerial-photo .arena-aerial-photo{animation:none;opacity:1}
+  .arena-arrived .has-aerial-photo .arena-aerial-wireframe{animation:none;opacity:0}
+  .arena-arrived .arena-aerial-wireframe path{animation:none;stroke-dashoffset:0}
+  .arena-wireframe-motion{animation:none!important;opacity:0!important}
+}

@@ -1,0 +1,112 @@
+/* A cabinet of eight briefing folders, contained within one viewport. */
+#people.people.chapter {
+  --folder-stock:#9c8b74;
+  --folder-edge:#c7b49a;
+  --paper:#e5dfd1;
+  --paper-ink:#242820;
+  --people-ink:#f1efe7;
+  --people-muted:#c8ccc4;
+  box-sizing:border-box;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  gap:clamp(12px,2svh,22px);
+  height:auto;
+  min-height:100svh;
+  padding:clamp(18px,3svh,32px) var(--margin);
+  overflow:hidden;
+  color:var(--people-ink);
+  background:#101411;
+  scroll-margin-top:-76px;
+}
+#people .people-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;min-width:0}
+#people .people-heading h2{margin:0;font-size:clamp(36px,5.8svh,70px);line-height:.99;text-transform:uppercase}
+#people .people-heading>p{max-width:310px;margin:0;color:var(--people-muted);font-size:clamp(12px,1.7svh,17px);line-height:1.45;text-align:justify;text-transform:uppercase}
+#people .touch-instruction{display:none}
+@media(hover:none){#people .pointer-instruction{display:none}#people .touch-instruction{display:inline}}
+
+/* The tabs and the cover share one edge, with two file leaves behind them. */
+#people .cast-layout{position:relative;display:grid;grid-template-rows:auto minmax(0,1fr);grid-template-columns:minmax(0,1fr);gap:0;min-width:0;min-height:0;height:auto;padding:0 7px 7px;isolation:isolate;background:none}
+#people .cast-layout::before,#people .cast-layout::after{content:"";position:absolute;z-index:-1;inset:70px 2px 3px 12px;border:1px solid #6b6253;background:#6b6456;border-radius:3px}
+#people .cast-layout::after{inset:76px 0 0 17px;background:#4e5045;border-color:#65695a;z-index:-2}
+#people #cast-list.cast-list{position:relative;grid-row:1;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));align-items:end;gap:2px;min-width:0;margin:0 0 -1px;padding:7px 0 0;z-index:3;background:none;box-shadow:none;backdrop-filter:none}
+#people #cast-list button{--folder-cut:polygon(0 0,75% 0,calc(75% + 9px) 9px,100% 9px,100% 100%,0 100%);position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:54px;padding:17px 5px 10px;margin:0;border:0;border-radius:0;clip-path:var(--folder-cut);background:#817864;color:#ece7dc;font-size:clamp(11px,1.1vw,14px);font-weight:700;line-height:1.2;text-transform:uppercase;white-space:nowrap;transition:background .16s,transform .16s}
+#people #cast-list button::before{content:attr(data-file);position:absolute;z-index:-1;inset:1px 1px 0;padding:3px 7px;clip-path:var(--folder-cut);background:#363c32;color:#abb0a2;font:9px/1.2 'Courier New',monospace;letter-spacing:.08em;text-align:left;transition:background .16s}
+#people #cast-list button::after{content:"";position:absolute;left:8px;right:8px;bottom:6px;height:2px;background:var(--color);opacity:0}
+#people #cast-list button .swatch{display:block;flex:0 0 7px;width:7px;height:7px;background:var(--color);border-radius:0;box-shadow:0 0 0 1px #0002}
+#people #cast-list button>span:not(.swatch){display:block;font-size:inherit;line-height:inherit}
+#people #cast-list button>span:nth-child(3){display:none}
+#people #cast-list button.is-pinned{background:var(--folder-edge);color:#22271f;z-index:2;min-height:59px}
+#people #cast-list button.is-pinned::before{background:var(--folder-stock);color:#393e30}
+#people #cast-list button.is-pinned::after{opacity:1}
+#people #cast-list button.is-previewing{background:#e9dfca;color:#22271f;transform:translateY(-3px);z-index:3}
+#people #cast-list button.is-previewing::before{background:#c1b39c;color:#393e30}
+@media(hover:hover){#people #cast-list button:hover{background:#e9dfca}#people #cast-list button:hover::before{background:#535a49}#people #cast-list button.is-pinned:hover::before{background:var(--folder-stock)}#people #cast-list button.is-previewing:hover::before{background:#c1b39c}}
+#people #cast-list button:focus-visible{outline:none;background:#fff}
+#people #cast-list button:focus-visible::before{inset:3px 3px 0}
+
+/* The profile is the inside of the folder, never a backdrop behind it. */
+#people #character.character,#people #character.character[data-character="zay"]{position:relative;grid-row:2;display:grid;grid-template-rows:auto minmax(0,1fr);grid-template-columns:minmax(0,1fr);gap:14px;min-width:0;min-height:0;height:auto;padding:18px 24px 26px;border:1px solid var(--folder-edge);border-radius:0 3px 3px 3px;color:var(--paper-ink);background-color:var(--folder-stock);background-image:repeating-linear-gradient(0deg,#fff0 0 3px,#473d2e07 3px 4px);box-shadow:inset 0 1px 0 #eddfc85c,0 10px 25px #0004;overflow:hidden}
+#people #character::after{content:"";position:absolute;bottom:7px;left:12px;right:12px;height:6px;border-top:1px solid #4a40332e;border-bottom:1px solid #dfc9a84d;pointer-events:none}
+#people .dossier-meta{display:flex;justify-content:space-between;gap:15px;padding-bottom:10px;border-bottom:1px solid #4b493d66;color:#34382e;font:11px/1.2 'Courier New',monospace;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+#people .folder-contents{display:grid;grid-template-columns:minmax(0,.38fr) minmax(0,.62fr);gap:clamp(20px,3vw,44px);min-width:0;min-height:0;position:relative;padding:4px 4px 0}
+#people .folder-contents::before{content:"";position:absolute;top:0;bottom:0;left:38%;width:1px;background:#51453733;box-shadow:1px 0 #dfc7a44d;pointer-events:none}
+#people .character-portrait{position:relative;align-self:stretch;inset:auto;width:100%;height:auto;min-height:300px;max-height:none;margin:0;padding:11px 11px 38px;overflow:visible;aspect-ratio:auto;background:#e5dfd1;box-shadow:1px 4px 8px #2a241c42;transform:rotate(-1.1deg)}
+#people .character-portrait::after{content:"";position:absolute;top:-13px;left:22px;width:15px;height:49px;border:2px solid #c1c3ba;border-radius:9px;box-shadow:1px 1px 2px #292c2466,inset 1px 1px 1px #fff8;transform:rotate(9deg);pointer-events:none}
+#people .character-portrait img{position:absolute;inset:11px 11px 38px;display:block;width:calc(100% - 22px);height:calc(100% - 49px);object-fit:cover;object-position:center 24%;-webkit-mask-image:linear-gradient(to right,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(to bottom,transparent,#000 1.5%,#000 98.5%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(to bottom,transparent,#000 1.5%,#000 98.5%,transparent);mask-composite:intersect}
+#people .character-portrait figcaption{position:absolute;left:12px;right:12px;bottom:11px;margin:0;color:#555b4e;font:10px/1.3 'Courier New',monospace;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+#people .character-copy{position:relative;inset:auto;grid-column:2;min-width:0;min-height:0;height:auto;padding:20px clamp(20px,2.7vw,34px);overflow:visible;color:var(--paper-ink);background:var(--paper);background-image:repeating-linear-gradient(0deg,#fff0 0 3px,#4e544307 3px 4px);box-shadow:1px 3px 5px #3b342b3b;border-top:4px solid #3c4435;backdrop-filter:none;-webkit-backdrop-filter:none;-webkit-overflow-scrolling:touch}
+#people .character-copy:focus-visible,#people .folder-contents:focus-visible{outline:2px solid #493c2b;outline-offset:-3px}
+#people .character-text{min-width:0;max-width:68ch}
+#people .character .role{margin:0 0 9px;color:#565d4c;font:11px/1.5 'Courier New',monospace;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+#people .character h3{margin:0 0 12px;color:#242a20;font-family:Anton,Impact,sans-serif;font-size:clamp(31px,3.4vw,48px);line-height:1.08;text-transform:uppercase;overflow-wrap:normal}
+#people .character blockquote{margin:0 0 16px;padding:0 0 12px;border-bottom:1px solid #83857566;color:#414735;font-size:clamp(18px,1.7vw,23px);line-height:1.35}
+#people .character p{max-width:68ch;margin:0 0 .95em;color:#30372b;font-size:clamp(14px,1.2vw,16px);line-height:1.5;text-align:justify;text-justify:inter-word;hyphens:auto}
+#people .character .brief-label{display:block;margin-bottom:4px;color:#59604e;font:10px/1.3 'Courier New',monospace;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+#people .character .character-footer{margin:14px 0 0;padding-top:10px;border-top:1px solid #83857566;font-size:13px;line-height:1.55;color:#4e5545}
+#people .character-footer strong{display:inline-block;margin-bottom:7px;color:#3c4534;text-transform:uppercase}
+#people .character-footer strong::before{content:"";display:inline-block;width:7px;height:7px;margin-right:7px;background:color-mix(in srgb,var(--character-color) 65%,#424d36)}
+#people .people-footer{display:flex;align-items:center;justify-content:space-between;gap:22px;min-width:0;margin:0;padding:0;color:var(--people-muted);background:none}
+#people .people-footer .symbol-note{max-width:760px;margin:0;font-size:12px;line-height:1.45;text-align:justify}
+#people .people-footer .text-button{flex:0 0 auto;max-width:275px;min-height:44px;margin:0;padding:8px 0;color:var(--people-ink);font-size:13px;line-height:1.4;text-transform:uppercase}
+#people .people-footer .text-button:hover{color:var(--orange)}
+#people .character.is-entering .folder-contents{animation:briefing-in .22s ease-out both}
+@keyframes briefing-in{from{opacity:.45;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1000px) and (min-width:701px){#people #character.character{padding-inline:18px}#people .folder-contents{gap:22px;grid-template-columns:minmax(0,.36fr) minmax(0,.64fr)}#people .folder-contents::before{left:36%}#people .character-copy{padding-inline:22px}#people #cast-list button{gap:5px;font-size:11px}#people .people-footer .symbol-note{font-size:11px}#people .people-footer .text-button{max-width:195px;font-size:11px}}
+@media(max-width:700px){
+ #people.people.chapter{gap:11px;padding:16px max(16px,env(safe-area-inset-left)) 14px}
+ #people .people-heading{display:block}
+ #people .people-heading h2{font-size:clamp(32px,4.8svh,43px);line-height:1.01}
+ #people .people-heading>p{max-width:none;margin:8px 0 0;font-size:11px;line-height:1.4}
+ #people .people-heading>p br{display:none}
+ #people .cast-layout{padding:0 4px 5px}
+ #people #cast-list.cast-list{grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding-top:3px}
+ #people #cast-list button{--folder-cut:polygon(0 0,77% 0,calc(77% + 6px) 6px,100% 6px,100% 100%,0 100%);min-height:44px;font-size:10px;gap:5px;padding:13px 3px 8px}
+ #people #cast-list button.is-pinned{min-height:44px}
+ #people #cast-list button .swatch{width:6px;height:6px;flex-basis:6px}
+ #people #cast-list button::before{font-size:8px;padding:2px 5px}
+ #people #character.character,#people #character.character[data-character="zay"]{padding:12px 13px 18px;gap:11px}
+ #people .dossier-meta{font-size:9px;letter-spacing:.06em;padding-bottom:8px;gap:8px}
+ #people .folder-contents{display:block;padding:10px 8px 12px;overflow:visible}
+ #people .folder-contents::before{display:none}
+ #people .character-portrait{width:60%;max-width:185px;height:clamp(175px,24svh,205px);min-height:0;max-height:none;margin:0 auto 20px;padding:8px 8px 28px}
+ #people .character-portrait img{inset:8px 8px 28px;width:calc(100% - 16px);height:calc(100% - 36px);object-position:center 20%}
+ #people .character-portrait figcaption{font-size:8px;bottom:8px}
+ #people .character-portrait::after{left:18px;height:37px;width:12px;top:-10px}
+ #people .character-copy{height:auto;overflow:visible;padding:20px 18px 22px;scrollbar-gutter:auto}
+ #people .character .role{font-size:10px;line-height:1.45;margin-bottom:10px}
+ #people .character h3{font-size:29px;margin-bottom:14px}
+ #people .character blockquote{font-size:19px;line-height:1.35;margin-bottom:18px;padding-bottom:15px}
+ #people .character p{font-size:15px;line-height:1.55}
+ #people .character .character-footer{font-size:12px}
+ #people .people-footer{display:grid;gap:4px}
+ #people .people-footer .symbol-note{font-size:10px;line-height:1.4}
+ #people .people-footer .text-button{max-width:none;min-height:32px;padding:4px 0;font-size:11px}
+}
+@media(max-height:680px){#people.people.chapter{gap:8px;padding-block:10px}#people .people-heading h2{font-size:30px}#people .people-heading>p{font-size:11px}#people .people-footer .symbol-note{font-size:10px}#people .people-footer .text-button{font-size:11px}#people #cast-list button{min-height:44px}#people #cast-list button.is-pinned{min-height:48px}#people .character-copy{padding-top:15px}#people .character h3{font-size:30px}}
+@media(max-height:680px) and (max-width:700px){#people #cast-list button.is-pinned{min-height:44px}#people .people-heading>p{margin-top:5px}#people .character-portrait{height:145px}}
+@media(max-width:640px){#people.people.chapter{scroll-margin-top:0}}
+body.motion-paused #people .character.is-entering .folder-contents{animation:none}
+body.motion-paused #people #cast-list button,body.motion-paused #people #cast-list button::before{transition:none}
+@media(prefers-reduced-motion:reduce){#people .character.is-entering .folder-contents{animation:none}#people #cast-list button,#people #cast-list button::before{transition:none}#people #cast-list button.is-previewing{transform:none}}
+@media print{#people.people.chapter{display:block;height:auto;overflow:visible;padding:30px}#people .people-heading{margin-bottom:25px}#people .cast-layout,#people #character.character,#people .folder-contents{display:block;height:auto;overflow:visible}#people #cast-list.cast-list{display:none}#people .character-portrait{width:36%;height:350px;float:left;margin:20px 24px 20px 0}#people .character-copy{height:auto;overflow:visible}#people .people-footer{clear:both;padding-top:20px}}
